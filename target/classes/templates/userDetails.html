@@ -1,0 +1,21 @@
+
+<!--user details from github site-->
+
+<div class="card">
+    <!--display if there is anything-->
+    <div class="card-body" th:if="${userName}">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <h5>login</h5>
+                <!--user name(login)-->
+                <span th:text="${userName}"></span>
+                <!--<div th:text="${user.name}"></div>-->
+            </li>
+            <!--user followers number-->
+            <li class="list-group-item">
+                <h5>Followers:</h5>
+                <span th:text="${userFollowers}"></span>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<!--Search history list-->
+
+<script>
+    (function () {
+        document.addEventListener('DOMContentLoaded', function () {
+            //when the user click on "getHistory" he get the a list of user's by Json
+            document.getElementById("getHistory").addEventListener("click", function () {
+                fetch("/getHistory", {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }})
+                    .then(res => res.json())
+                    .then(resp => {
+                        res = "";
+                        //for every user make a link to the github-user-page
+                        for (el of resp) {
+                            res = res + "<br/><a href="+ el.url + " target='_blank'>" +
+                                el.name + " : " + el.searchNumber + " </a>";
+                        };
+                        //if the list is empty...
+                        if(res == "")
+                            document.getElementById("data").innerHTML = "Search history is empty!";
+                        else document.getElementById("data").innerHTML = res;
+                    })
+                    .catch(e => {
+                        document.getElementById("data").innerHTML = "You are no longer connected. " +
+                            "<br/> if you want to connect again you will need to re-verify.";
+                    });
+            });
+        });
+    })();
+</script>
+
+<!-- Handling with ajax - following the requirement -->
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">History</h5>
+        <h6 id="data" style="..."></h6>
+        <br/>
+        <div class="btn btn-outline-info my-2 my-sm-0" id="getHistory">Get History</div>
+    </div>
+</div>
+
+<!-- ********************************************************************************************* -->
+
+<!-- Handling with thymeleaf-->
+<!--
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">History</h5>
+                <h6 th:if="${#lists.isEmpty(users)}">Empty Search History!</h6>
+                <div th:unless="${#lists.isEmpty(users)}">
+                    <ol>
+                        <li th:each="user : ${users}">
+                            <a th:href="${user.url}" target='_blank'>
+                                <i class="history-list-item" th:text="${user.name}"></i>
+                                <i class="history-list-item"> : </i>
+                                <i class="history-list-item" th:text="${user.searchNumber}"></i>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+        </div>
+    </div>
+-->
+

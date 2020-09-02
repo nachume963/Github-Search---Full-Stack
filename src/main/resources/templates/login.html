@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- This page will be the website's login page -->
+
+<!-- Brings the header file -->
+<head th:insert="header.html"></head>
+
+
+<body>
+<div class="container">
+
+    <!-- Brings the logo file -->
+    <div th:insert="logo.html"></div>
+
+    <!-- input box - name and password -->
+    <nav class="navbar-light bg-light">
+        <form  class="navbar" action="#" th:action="@{/login}" th:object="${admin}" method="post">
+            <div class="form-inline">
+                <input type="text" th:field="*{adminName}" class="form-control mr-sm-2" id="adminName" placeholder="Name">
+                <span class="form-control mr-sm-2 alert-warning"
+                      th:if="${#fields.hasErrors('adminName')}" th:errors="*{adminName}"></span>
+                <input type="text" th:field="*{password}" class="form-control mr-sm-2" id="password" placeholder="Password">
+                <span class="form-control mr-sm-2 alert-warning"
+                      th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+            </div>
+            <button class="btn btn-outline-primary my-2 my-sm-0 float-right" type="submit">login</button>
+        </form>
+    </nav>
+</div>
+</body>
+</html>

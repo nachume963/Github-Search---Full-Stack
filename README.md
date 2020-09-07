@@ -8,4 +8,4 @@ implemented:
 Responsive client-side using by JS, Ajax, json, HTML and Bootstrap.
 Server-side using Java, Spring Boot.
 Login mechanism using by session.
-Data Base using by sqlite3.
+Data Base using by MySQL and AXAMPP.
